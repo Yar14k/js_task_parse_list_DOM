@@ -16,18 +16,24 @@ function sortList(list) {
 
 function getEmployees(list) {
   return [...list.querySelectorAll('li')].map((li) => ({
-    name: li.querySelector('.name').textContent,
-    position: li.querySelector('.position').textContent,
+    name: li.querySelector('.name')
+      ? li.querySelector('.name').textContent
+      : '',
+    position: li.querySelector('.position')
+      ? li.querySelector('.position').textContent
+      : '',
     salary: parseSalary(li.dataset.salary),
-    age: Number(li.querySelector('.age').textContent),
+    age: li.querySelector('.age')
+      ? Number(li.querySelector('.age').textContent)
+      : null,
   }));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   const ulElement = document.querySelector('ul');
-  if (ulElement) {
-  sortList(ulElement);
-  getEmployees(ulElement);
-}
-});
 
+  if (ulElement) {
+    sortList(ulElement);
+    getEmployees(ulElement);
+  }
+});
