@@ -1,7 +1,7 @@
 'use strict';
 
 function parseSalary(salaryStr) {
-  return Number(salaryStr.replace('$', '') .replace(',', ''));
+  return Number(salaryStr.replace('$', '').replace(',', ''));
 }
 
 function sortList(list) {
@@ -11,11 +11,11 @@ function sortList(list) {
     return parseSalary(b.dataset.salary) - parseSalary(a.dataset.salary);
   });
 
-  items.forEach(item => list.appendChild(item));
+  items.forEach((item) => list.appendChild(item));
 }
 
 function getEmployees(list) {
-  return [...list.querySelectorAll('li')].map(li => ({
+  return [...list.querySelectorAll('li')].map((li) => ({
     name: li.querySelector('.name').textContent,
     position: li.querySelector('.position').textContent,
     salary: parseSalary(li.dataset.salary),
@@ -23,10 +23,11 @@ function getEmployees(list) {
   }));
 }
 
-const list = document.querySelector('ul');
-
-if (list) {
-  sortList(list);
-  const employees = getEmployees(list);
-  console.log(employees);
+document.addEventListener('DOMContentLoaded', () => {
+  const ulElement = document.querySelector('ul');
+  if (ulElement) {
+  sortList(ulElement);
+  getEmployees(ulElement);
 }
+});
+
