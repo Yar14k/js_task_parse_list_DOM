@@ -29,11 +29,14 @@ function getEmployees(list) {
   }));
 }
 
+function displayEmployees(employees) {}
 document.addEventListener('DOMContentLoaded', () => {
   const ulElement = document.querySelector('ul');
 
   if (ulElement) {
     sortList(ulElement);
-    getEmployees(ulElement);
+
+    const employees = getEmployees(ulElement);
+    displayEmployees(employees);
   }
 });
